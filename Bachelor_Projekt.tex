@@ -1,0 +1,791 @@
+%% Präambel
+%% Initialisierung
+\documentclass[enabledeprecatedfontcommands, a4paper]{scrreprt}    % articel: scrartcl   % book: scrreprt
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyheadings}
+
+\year=2020
+\month=10
+\day=13
+
+% Abkürzungsverzeichnis
+\usepackage[withpage, smaller]{acronym}
+
+%% Sprache
+\usepackage[ngerman]{babel}
+
+%% Boxstyle
+\usepackage{fancybox}
+
+%% Fußnoten
+\usepackage{endnotes}
+
+% Querformat paket
+\usepackage{pdflscape}
+
+% Einbinden von PDF's
+\usepackage{pdfpages}
+
+% Lesezeichenpacket für PDF
+\usepackage{hyperref}
+
+%% American Mathematical Society Pakete
+\usepackage{amsmath,esint}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+\usepackage{cancel}
+%\usepackage{subfigure}
+\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\usepackage{trfsigns}
+
+%% Algorithmen (Pseudocode)
+\usepackage[]{algorithm2e}
+
+%% Römische Zahlen:  z.B. \RM{2}
+\newcommand{\RM}[1]{\MakeUppercase{\romannumeral #1{}}}   
+
+%% Textverarbeitung Paket
+\usepackage{color}
+
+%% Griechische Buchstaben aufrecht
+\usepackage{upgreek}
+
+%% Grafik Paket
+\usepackage{graphicx}
+\usepackage{float}
+
+%% Include Diagramm Package
+\input xy 
+\xyoption{all}
+
+%% Include PGFPlots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.5}
+
+%% Subfigures
+\usepackage{subcaption}
+
+%% Matlab-Files package   %% \lstinputlisting{dateiname.m}
+\usepackage{listings}
+\lstset{
+	language = Matlab,
+	showstringspaces = false,
+	numbers = left,
+	numberstyle = \tiny,
+	breaklines = true,
+	basicstyle = \tiny,
+}
+
+%% Zeileneinrücken verhindern
+ \setlength{\parindent}{0em} 
+
+%% Style
+\pagestyle{fancy}
+\lhead[\bfseries \title \protect]{\bfseries \title \protect}
+\cfoot{Seite: \thepage}
+
+% fuer Zitate und Literaturverzeichnis
+\usepackage{natbib}
+\bibliographystyle{alpha}
+
+
+
+\usepackage{tikz} 
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,fit,positioning,shapes.symbols,chains}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+{\centering
+\includegraphics[width=0.6\textwidth]{HS_Logo2}\par
+\vspace{1cm}
+{\scshape\LARGE University of Applied Sciences Trier \par}
+\vspace{1.5cm}
+{\scshape\Large Bachelor Projektarbeit \par}
+\vspace{1.5cm}
+{\huge\bfseries Entwicklung und Implementierung eines Can-Interfaces zur präzisen
+	Lageregelung eines Portalkrans \par}
+\vspace{1.5cm}
+{\scshape \large BACHELOR OF ENGINEERING \par}
+\vspace{0.8cm}
+{\scshape\large  Elektrotechnik\par}
+{\scshape\large Informationstechnologie und Elektronik  \par}
+\vspace{1.0cm}
+{verfasst von: \\  \par}
+%\vspace{0.2cm}
+{\large  Torsten  \textsc{Zimmermann}. [966352]\\  \par}
+ \vspace{0.5cm}
+ {Teamprojekt mit: \\  \par}
+ {\large  Steave  \textsc{Dahm}. [969471]\\  \par}
+ \vspace{0.5cm}
+betreut von: \par
+{\large Prof. Dr. Ing. Matthias \textsc{Scherer} \\  Andreas \textsc{Reis}, M. Sc. \par}
+\vspace{0.5cm}
+{Abgabedatum: \\  \par}
+%\vspace{0.2cm}
+{\large \today \par}} %\today
+\end{titlepage}
+
+\begin{titlepage}
+{\centering
+\includegraphics[width=0.6\textwidth]{HS_Logo2}\par
+\vspace{1cm}
+{\scshape\LARGE University of Applied Sciences Trier \par}
+\vspace{1.5cm}
+{\scshape\Large Master Thesis \par}
+\vspace{1.5cm}
+{\huge\bfseries N-Body Langevin-Dynamic-Simulation of magnetic Nanoparticles with MATLAB \par}
+\vspace{1.5cm}
+{\scshape \large Master of Science \par}
+\vspace{0.8cm}
+{\scshape\large  Electrical Engineering \par}
+{\scshape\large Information Technology and Electronics  \par}
+\vspace{1.5cm}
+{author: \\  \par}
+%\vspace{0.2cm}
+{\large  Michael P.  \textsc{Adams}, B. Eng. [957815]\\  \par}
+ \vspace{0.5cm}
+supervisors: \par
+{\large Prof. Dr. Ing. Hellmut \textsc{Hupe} \\  Jörg \textsc{Fusenig}, M. Sc. \par}
+\vspace{0.5cm}
+{submission date: \\  \par}
+%\vspace{0.2cm}
+{29. February 2020 \par}} %\today
+\end{titlepage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Hier Startet das Dokument %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+{\huge \textbf{Eidesstattliche Erklärung}} \\ \\
+Ich versichere, die Master-Thesis selbstständig und lediglich unter Benutzung der angegebenen Quellen und Hilfsmittel verfasst zu haben. \\ \\
+
+Ich erkläre weiterhin, dass die vorliegende Arbeit noch nicht im Rahmen eines anderen Prüfungsverfahrens eingereicht wurde. \\ \\ \\
+
+--------------------------------------- \\
+Ort, Datum
+
+
+
+\newpage
+
+\newpage
+{\huge \textbf{Danksagung}} \\ \\
+An dieser Stelle möchte ich mich bei all denjenigen bedanken, die mich während der Anfertigung dieser Master-Thesis unterstützt und motiviert haben. \\ \\
+Zuerst gebührt mein Dank Herrn Prof. Dr.-Ing. Hellmut \textsc{Hupe} und Herrn Jörg \textsc{Fusenig}, der meine Master-Thesis richtungsweisend und mit viel Engagement betreut hat. Für die hilfreichen Anregungen und die konstruktive Kritik bei der Erstellung dieser Arbeit möchte ich mich herzlich bedanken.\\ 
+
+%Des weiteren möchte ich mich bei meinen Kommilitonen Michael Hengels, Lorenz Dirksmeyer und Alexander Schloeder für die gute Zusammenarbeit während des Studiums, die interessanten Diskussionen und Ideen bedanken. \\ 
+
+Insbesondere möchte ich mich bei meinen Eltern Egon und Cäcilia Adams bedanken, die mir mein Studium durch ihre finanzielle Unterstützung ermöglicht haben und stets ein offenes Ohr für meine Sorgen hatten. \\ \\ \\
+Michael P. Adams, \\
+Trier, \today
+
+
+
+\newpage
+\cleardoublepage\pdfbookmark{\contentsname}{toc}\tableofcontents
+\newpage
+
+
+
+%\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+%\chapter*{Abkürzungsverzeichnis}
+%\begin{acronym}[DZGL]
+%\acro{CW}[CW]{Continuous Wave}
+%\end{acronym}
+
+
+
+
+%\newpage
+
+\addcontentsline{toc}{chapter}{Symbolverzeichnis}
+\chapter*{Symbolverzeichnis}
+
+\section*{Mathematische Symbole und Operatoren}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{ c | c}
+\parbox[c][0.8cm][c]{3cm}{\centering\textbf{Symbol} } 
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering\textbf{Bezeichnung}}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $ \nabla $  }    
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Nabla-Operator}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $ \Delta $  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Laplace-Operator}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\mathbf{J}_{\underline{u}}\left( \underline{F}\right) $  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Jacobi-Matrix angewandt auf $\underline{F}$ bezüglich $\underline{u}$}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\mathcal{O}(\cdot) $  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Landau-Symbol}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\mathbf{0}$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Nullmatrix}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\text{diag}(a_{11}, \cdots, a_{nn})$  }    
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Diagonalmatrix}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\delta(\cdot)$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Delta-Distribution}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\times$  }    
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Kreuzprodukt}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\otimes$  }    
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Dyadisches Produkt}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\overrightarrow{a}$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Physikalischer 3D-Vektor}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\underline{a}$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Generalisierter Vektor}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\text{E}\left\{\cdot\right\}$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering  Erwartungswert-Operator}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\text{VAR}\left\{\cdot\right\}$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering Varianz-Operator}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\mathbf{\Sigma}$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering Kovarianz-Matrix}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\Lambda_{jj}$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering Eigenwerte der Kovarianz-Matrix}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\mathbf{\Lambda}$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering Diagonalisierte Kovarianz-Matrix}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\Upsilon_{ij}$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering Komponenten der Eigenvektor-Matrix der Kovarianz-Matrix}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{3cm}{\centering  $\mathbf{\Upsilon}$  }  
+& 
+\parbox[c][0.8cm][c]{11cm}{\centering Eigenvektor-Matrix der Kovarianz-Matrix}
+\\
+\end{tabular}
+\end{center}
+\end{table}%
+
+\section*{Physikalische Konstanten}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{ c | c}
+\parbox[c][0.8cm][c]{5cm}{\centering\textbf{Symbol \& Wert} }  
+& 
+\parbox[c][0.8cm][c]{9cm}{\centering\textbf{Bezeichnung}}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{5cm}{\centering  $ \mu_0 = 4 \pi \cdot 10^{-7} \frac{\text{Vs}}{\text{Am}}  $  }    
+& 
+\parbox[c][0.8cm][c]{9cm}{\centering  Magnetische Feldkonstante}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{5cm}{\centering  $ k_B = 1.380649 \cdot 10^{-23} \text{J}/\text{K}$  }   
+& 
+\parbox[c][0.8cm][c]{9cm}{\centering  Boltzmann-Konstante}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{5cm}{\centering  $A \approx 10^{-19} \text{J}$  }  
+& 
+\parbox[c][0.8cm][c]{9cm}{\centering  Hamaker-Konstante}
+\\ 
+\end{tabular}
+\end{center}
+\end{table}%
+
+
+\section*{Physikalische Größen}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{ c | c | c}
+\parbox[c][0.8cm][c]{2cm}{\centering\textbf{Symbol} }
+&
+\parbox[c][0.8cm][c]{2cm}{\centering \textbf{Einheit }}    
+& 
+\parbox[c][0.8cm][c]{8cm}{\centering\textbf{Bezeichnung}}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \psi_H $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{A}\cdot \text{m}^2$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Skalarpotential der magnetischen Feldstärke}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \psi_B $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{T} \cdot \text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Skalarpotential der magnetischen Flussdichte}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{H} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{A}\cdot \text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Magnetische Feldstärke}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{B} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  \text{T}  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Magnetische Flussdichte}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{m} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{A} \cdot \text{m}^2$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Magnetisches Moment}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{M} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{A}/\text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Magnetisierung}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ M $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{A}/\text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Betrag der Magnetisierung}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \Phi $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{Wb}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Magnetischer Remanenzfluss}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{l} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Dipol-Achsenvektor}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{e} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  -  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Dipol-Achseneinheitsvektor}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{F} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  \text{N}  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Kraft}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{T} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{N}\cdot \text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Drehmoment}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{F_{ij}}^{D} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{N}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Magnetische Dipol-Dipol-Kraft}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{T_{ij}}^{D} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{N}\cdot \text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Magnetisches Dipol-Dipol-Drehmoment}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{F_{ij}}^{H} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{N}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Hamaker-Kraft}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{F_{ij}}^{S} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{N}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Sterisch-repulsive Kraft}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ V_{ij}^{H} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{J}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Hamaker-Potential }
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ V_{ij}^{S} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{J}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Potentielle Energie der sterischen Repulsion }
+\\
+\end{tabular}
+\end{center}
+\end{table}%
+
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{ c | c | c}
+\parbox[c][0.8cm][c]{2cm}{\centering\textbf{Symbol} }
+&
+\parbox[c][0.8cm][c]{2cm}{\centering \textbf{Einheit }}    
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering\textbf{Bezeichnung}}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \underline{q} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $-$}%$\begin{bmatrix} \text{m} & \text{m} & \text{m} & \text{rad} & \text{rad} \end{bmatrix}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Ortsvektor der generalisierten Koordinaten}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \dot{\underline{q}} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $-$}%$\begin{bmatrix} \text{m} & \text{m} & \text{m} & \text{rad} & \text{rad} \end{bmatrix}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Geschwindigkeitsvektor der generalisierten Koordinaten}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \ddot{\underline{q}} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $-$}%$\begin{bmatrix} \text{m} & \text{m} & \text{m} & \text{rad} & \text{rad} \end{bmatrix}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Beschleunigungsvektor der generalisierten Koordinaten}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \lambda_1, \lambda_2, \lambda_3 $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $-$}%$\begin{bmatrix} \text{m} & \text{m} & \text{m} & \text{rad} & \text{rad} \end{bmatrix}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Körperfeste Kugelkoordinaten}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \mathbfcal{J} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  -  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  \textsc{Jacobi}-Matrix (\textsc{d'Alembert}'sches Prinzip)}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \mathbfcal{M} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  -  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Massenmatrix (\textsc{d'Alembert}'sches Prinzip)}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \mathbfcal{R} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  -  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Relativmatrix (\textsc{d'Alembert}'sches Prinzip)}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \underline{F} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  -  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Generalisierter Kraftvektor (\textsc{d'Alembert}'sches Prinzip)}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ x, y, z $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $ \text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Kartesische Koorindaten}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \alpha $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $ \text{rad}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Azimut-Winkel}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \beta $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $ \text{rad}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Zenit-Winkel}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $ \overrightarrow{r_{ij}} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $ \text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Abstandsvektor von $i$ zu $j$}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $\eta $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $  \text{kg}/(\text{m} \cdot \text{s}) $  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Dynamische Viskosität}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $T$  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $\text{K}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Temperatur}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $R$  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $\text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Partikel-Radius}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $\rho$  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $\text{kg}/\text{m}^3$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering Massendichte}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $m$  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $\text{kg}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering Masse}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $V$  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $\text{m}^3$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering Partikel-Volumen}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $\gamma_t$  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $\text{kg}/\text{s}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering Transversale Stokes'sche Reibungskonstante }
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $\gamma_r$  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $(\text{kg} \cdot \text{m}^2)/\text{s}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering Rotatorische Stokes'sche Reibungskonstante }
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $\xi$  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $1/\text{m}^2$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering Dichte der Tensidschicht}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $\delta$  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering $\text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering Dicke der Tensidschicht }
+\\
+\end{tabular}
+\end{center}
+\end{table}%
+
+\newpage
+
+\section*{Primäre Skalierungs-Konstanten}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{ c | c | c}
+\parbox[c][0.8cm][c]{2cm}{\centering\textbf{Symbol} }
+&
+\parbox[c][0.8cm][c]{2cm}{\centering \textbf{Einheit }}    
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering\textbf{Bezeichnung}}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $T_{\text{ch}} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{s}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Zeitlicher Skalierungsfaktor}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $R $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\text{m}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Räumlicher Skalierungsfaktor}
+\\ 
+\end{tabular}
+\end{center}
+\end{table}%
+
+\section*{Skalierte Kofaktoren der Kräfte}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{ c | c | c}
+\parbox[c][0.8cm][c]{2cm}{\centering\textbf{Symbol} }
+&
+\parbox[c][0.8cm][c]{2cm}{\centering \textbf{Einheit }}    
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering\textbf{Bezeichnung}}
+\\
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $C_H$  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $-$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Kofaktor der Hamaker-Kraft}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $C_S $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $-$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Kofaktor 1 der sterischen Repulsion}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $c_S $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $-$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Kofaktor 2 der sterischen Repulsion}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $C_{FD} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $-$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Kofaktor der magn. Dipol-Dipol-Kraft}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $C_{TD} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $-$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Kofaktor des magn. Dipol-Dipol-Drehmoment}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $C_{FB} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\frac{\text{s}^2\cdot \text{m} \cdot \text{A}}{\text{kg}}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Kofaktor äußerer magn. Kräfte}
+\\ 
+\hline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parbox[c][0.8cm][c]{2cm}{\centering  $C_{TB} $  }  
+& 
+\parbox[c][0.8cm][c]{2cm}{\centering  $\frac{\text{s}^2  \cdot \text{A}}{\text{kg}}$  }   
+& 
+\parbox[c][0.8cm][c]{10cm}{\centering  Kofaktor äußerer magn. Drehmomente}
+\\ 
+\end{tabular}
+\end{center}
+\end{table}%
+
+ 
+
+% Abbildungs- und Tabellenverzeichnis %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\noindent
+%\begin{minipage}{\textwidth}
+\listoffigures
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoftables
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+%\end{minipage}
+
+\chapter{Title}
+
+\section{Title}
+
+
+
+
+
+
+
+
+
+% Literaturverzeichnis %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%\medskip
+%%%%\printbibliography
+
+\bibliography{references}
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+%\nocite{*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+
