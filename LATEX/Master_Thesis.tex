@@ -148,7 +148,8 @@ Ort, Datum
 {\huge \textbf{Kurzfassung}} \\ \\
 Im Rahmen einer Bachelor Projektarbeit wird für den Portalkran Versuch des Regelungstechnik Labors eine Ansteuerung über ein Can Interface Entwickelt und Implementiert.
 Dabei übernimmt eine Regeleinheit namens Unicontrol, welche auf einer Studentischen Master Arbeit aufbaut, die komplette Regelung des Versuchs.Zudem besitzt die Laufkatze eine Zusatzplatine mit mehreren Sensoren und Aktoren, die in meinem Teil der Arbeit noch programiertechnisch implementiert werden mussten. Das Can Interface hat die Aufgabe Unicontrol, das Motorsteuergerät und die Platine, welche ebenfalls auf einer Studentischen Arbeit besteht mit einander kommunizier fähig zu machen.Hierbei musste darauf geachtet werden, das das Motorsteuergerät mit Can-Open Kommuniziert. Unicontrol und die zusatz Platine kommunizieren über Can-Automotive. Dabei wurden auch verschiedene Sicherheitsmechanismen implementiert, sodass niemand zu schaden kommen kann. \\ \\
-Die Ansteuerung soll über einen externen Rechner von Zuhause aus für Studierende möglich gemacht werden. Dies hat den Vorteil, das Studierende in Zukunft das Regelungstechnik-Labor absolvieren können auch über das Wochenende hinweg. Der komplette Aufbau ist im Anhang nochmal durch ein Bild kenntlich gemacht worden. 
+Die Ansteuerung soll über einen externen Rechner von Zuhause aus für Studierende möglich gemacht werden. Dies hat den Vorteil, das Studierende in Zukunft das Regelungstechnik-Labor absolvieren können auch über das Wochenende hinweg. Der komplette Aufbau ist im Anhang nochmal durch ein Bild kenntlich gemacht worden. \\ 
+Zum besseren Verständnis, wird auch nochmal kurz auf den Part meines Teampartners eingegangen, der sich um den kompletten mechanischen Aufbau des Portalkrans gekümmert hat.
 
 \newpage
 {\huge \textbf{Abstract}} \\ \\
@@ -182,16 +183,30 @@ Das Motorsteuergerät verwendet zur Kommunikation eine Can-Open verbindung. Dies 
 \subsection{Betriebssystem}
 Jeweils Unicontrol sowie die Platine nutzen das Betriebssystem TI-RTOS[1] . Eine besonderheit ist dabei, das es sich um ein Echtzeitbetriebssystem handelt. Das bedeutet, das Code in einem bestimmten Zeitfenster auf jeden Fall ausgeführt wird. Speziell als Beispiel dieses Projektes ist zu nennen, das alle 10 ms die Winkel und Winkelencoder Werte angefragt werden und auch alle 10 ms zur Auswertung bereit stehen müssen um den weiteren Betrieb möglich zu machen.
 \subsection{Entwicklungsumgebung}
-A
+ALs Entwicklungsumgebung kommt Code Composer Studio zum einsatz, welche speziell für die Entwicklung von Applikationen von TI Mikrocontroller entwickelt wurde.
+Unicontrol verwendet den Tiva? TM4C1294NCPDT Mikrocontroller. Die Zusatz Platine verwendet den Tiva? TM4C123GH6PM Mikrocontroller.
 \subsection{Sicherheit}
 Erst einmal ist die Einstellbare Position in ControlDesk für den Nutzer auf die vorhandene Strecke begrenzt. Dies macht es sofern alles ordnungsgemäß funktioniert unmöglich für den Nutzer über die Position hinaus zu fahren. Sollte es jedoch mal zum Problem kommen zum Beispiel durch mechanische Abnutzung des Kodierfilms, besitzt die Laufkatze Magnete an beiden enden als Endschalter. Diese sollen, sobald der Hall Sensor diese im initialisiertem Betrieb erkannt, die Platine komplett abschalten.
 Vorgebeugt werden soll dieser Fehler jedoch schon direkt von der Initialisierung. Diese fährt erst einmal die komplette Strecke ab und prüft die Funktion der beiden Magneten. Sind die Magneten erst einmal erkannt, wird noch geprüft ob keine Striche auf der Strecke verloren gegangen sind.
 Das Steuergerät schaltet automatisch ab, sobald das Can Kabel gekappt wird. Dies ist auch sehr sinnvoll, da nun keine Informationen mehr ankommen, das der Motor aufhören soll zu fahren. Diese Funktion wurde programmier technisch auch bei der Platine realisiert.
 
 Solange diese Initialisierung nicht abgeschlossen ist, verfügt der Benutzer nicht über alle Funktionen von ControlDesk. Durch diese Initialisierung wird sicher gestellt, das die Magnete ordnungsgemäßig befestigt sind und später als Endschalter funktionieren. Zudem wird durch die Initialisierung bestätigt, das keine Streifen auf der Strecke Verloren gehen.
-
- 
-
+\subsection{Simulink}
+Es ist geplant, den kompletten Regler in Simulink aufzubauen. Simulink erzeugt aus dem kompletten Modell C-Code und fügt diesen automatisch in Code Composer Studio hinzu. Hierbei war darauf zu achten, das man die Variablen, die später über ControlDesk verstellbar sind, extra eingepflegt werden. 
+\subsection{Asap Editor}
+In Asap Editor ist es möglich eine .A2L Datei zu erstellen. Die .A2L Datei wird später von dem Programm Control Desk benötigt. In dieser Datei wird unter anderem eine Zuordnung zwischen dem symbolischen Variablennamen und zugehörigen Adressbereich getroffen. Dies soll es später möglich machen, die Variablen Werte während der Laufzeit zu verändern.
+\subsection{Control Desk}
+ControlDesk wird hier zusammen mit einer GUI dem Benutzer zur Verfügung gestellt. Von hier ist es möglich, Variablen Werte während der Laufzeit des Programm zu verändern. Variablen Werte konnten hier in der GUI über Verschiedene Komponenten verstellt werden. Möglich macht das verändern der Werte aber in wirklichkeit die XCP Verbindung. ControlDesk dient hier nur als GUI.
+\subsection{XCP}
+Eine XCP Verbindung wird benötigt um während der Laufzeit die verschiedenen Parameter zu Verändern oder auszulesen. Die XCP Verbindung läuft über den Can 1 Anschluss des Unicontrols. Bei XCP handelt es sich um ein universelles Mess- und Kalibrierprotokoll, welches komplett unabhängig vom verwendeten Netzwerktyp verwendet werden kann. Möglich ist zum Beispiel wie hier XCP on CAN oder aber auch XCP on USB usw.
+\chapter{Initialisierung der Peripherie Module}
+\subsection{QEI-Module}
+Der Linearencoder erzeugt ein Quatratur Signal sobald es über den Codierfilm der Laufkatze fährt. Dieses Quatratur Signal wird an die entsprechenden Pins des Mikrocontrollers geführt, die ein Module beinhalten zum auswerten eines solchen Quatratur Signals. 
+Ausgewertet wurde das Signal mit Funktionen, die einem zur Verfügung standen durch eine Driverlib.  
+\chapter{Fazit}
+\section{Aktueller Stand}
+In dem Projekt konnten alle gestellten Anforderungen erfolgreich umgesetzt werden. Es ist möglich die komplette Laufkatze an eine klar gewünschte Position zu Regeln. Möglich macht das der Regler der in Matlab implementiert wurde. Zudem konnten alle Sensoren und Aktoren erfolgreich in Betrieb genommen werden. Interessant zu sehen war hier, das die QEI keine Striche über die komplette Strecke verliert. Die Sicherheitsmechanismen wurden zudem auch erfolgreich Implementiert und getestet, sodass niemand zu schaden kommen kann. Zum besseren Verständnis wurde der C-Code auch nochmal sorgfältig mit Kommentaren versehen um später Änderungen schnell möglich zu machen.  
+\section{Ausblick}
 
 % Abbildungs- und Tabellenverzeichnis %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
