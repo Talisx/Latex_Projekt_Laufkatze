@@ -168,9 +168,8 @@ The control should be made possible for students from home via an external compu
 %\begin{acronym}[DZGL]
 %\acro{CW}[CW]{Continuous Wave}
 %\end{acronym}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Einleitung}
-
 \section{Aufgabenstellung}
 Die zentrale Aufgabe dieser Projektarbeit war die Vernetzung der Regeleinheit Unicontrol zusammen mit dem Motorsteuergerät und der eigens Entwickelten Platine. \\ \\
 Die Zusatz Platine welche auf einer studentischen Arbeit aufbaut besitzt Sensoren und Aktoren. Vorhandene Sensoren sind der Linearencoder, der Winkelencoder und der Hall Sensor. Vorhandene Aktoren sind der Hubmagnet und der Servomotor.
@@ -178,7 +177,9 @@ Diese Peripherie Module der zusatz Platine sollten zudem initialisiert und getes
 \\ \\
 Die Regeleinheit Unicontrol sollte über die Umgebung Controldesk welche auch im Automotive Bereich genutzt wird, steuerbar sein. Weiter unten ist diese Umgebung nochmal gezeigt und erklärt. Zudem wird der Regler in Software implementiert. Dies ist möglich indem in Simulink der Regler aufgebaut wird und in C-Code kompiliert wird und dem Unicontrol Code hinzugefügt wird.
 \\ \\
-Das Motorsteuergerät verwendet zur Kommunikation eine Can-Open verbindung. Dies machte es nicht möglich wie zuvor die Driverlib zu nutzen. Deshalb mussten hier 2 Funktionen integriert werden um die Can Nachrichten im gewünschten Format zu verpacken und zu entpacken. Es wurde gefordert, den Motor im Current Mode zu betreiben. 
+Das Motorsteuergerät verwendet zur Kommunikation eine Can-Open verbindung. Dies machte es nicht möglich wie zuvor die Driverlib zu nutzen. Deshalb mussten hier 2 Funktionen integriert werden um die Can Nachrichten im gewünschten Format zu verpacken und zu entpacken. Es wurde gefordert, den Motor im Current Mode zu betreiben.
+\section{Aufbauende Arbeiten} 
+
 \section{Herangehensweise}
 \subsection{Betriebssystem}
 Jeweils Unicontrol sowie die Platine nutzen das Betriebssystem TI-RTOS[1] . Eine besonderheit ist dabei, das es sich um ein Echtzeitbetriebssystem handelt. Das bedeutet, das Code in einem bestimmten Zeitfenster auf jeden Fall ausgeführt wird. Speziell als Beispiel dieses Projektes ist zu nennen, das alle 10 ms die Winkel und Winkelencoder Werte angefragt werden und auch alle 10 ms zur Auswertung bereit stehen müssen um den weiteren Betrieb möglich zu machen.
@@ -199,14 +200,40 @@ In Asap Editor ist es möglich eine .A2L Datei zu erstellen. Die .A2L Datei wird 
 ControlDesk wird hier zusammen mit einer GUI dem Benutzer zur Verfügung gestellt. Von hier ist es möglich, Variablen Werte während der Laufzeit des Programm zu verändern. Variablen Werte konnten hier in der GUI über Verschiedene Komponenten verstellt werden. Möglich macht das verändern der Werte aber in wirklichkeit die XCP Verbindung. ControlDesk dient hier nur als GUI.
 \subsection{XCP}
 Eine XCP Verbindung wird benötigt um während der Laufzeit die verschiedenen Parameter zu Verändern oder auszulesen. Die XCP Verbindung läuft über den Can 1 Anschluss des Unicontrols. Bei XCP handelt es sich um ein universelles Mess- und Kalibrierprotokoll, welches komplett unabhängig vom verwendeten Netzwerktyp verwendet werden kann. Möglich ist zum Beispiel wie hier XCP on CAN oder aber auch XCP on USB usw.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Initialisierung der Peripherie Module}
 \subsection{QEI-Module}
-Der Linearencoder erzeugt ein Quatratur Signal sobald es über den Codierfilm der Laufkatze fährt. Dieses Quatratur Signal wird an die entsprechenden Pins des Mikrocontrollers geführt, die ein Module beinhalten zum auswerten eines solchen Quatratur Signals. 
-Ausgewertet wurde das Signal mit Funktionen, die einem zur Verfügung standen durch eine Driverlib.  
+Die QEI ist ein Modul des Mikroprozessors, mit dem es möglich ist Positionsdaten und Geschwindigkeitsdaten zu erfassen. Die QEI benötigt dazu ein Quatratursignal, welches von einem Linear Encoder zur Verfügung gestellt wird. Die QEI zählt hierbei 4 Flanken pro Signalperiode des Kodierstreifens.  \\ \\ 
+
+\includegraphics{Bilder/QuatraturSignalLatexBild.PNG}
+\subsection{Hall Sensor}
+\subsection{Elektromagnet}
+
+\subsection{Servo Motor}
+\subsection{QEI-Module}
+\subsection{Message Objekte}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Algorithmus}
+\section{Funktionsweise Haupt Code}
+\section{Funktionsweise Sicherheitsmaßnahmen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Bedienungsanleitung}
+\section{Software}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Wartung}
+\section{Epos}
+\section{Software}
+\section{Peak Adapter}
+\section{Watchclass}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Fazit}
 \section{Aktueller Stand}
-In dem Projekt konnten alle gestellten Anforderungen erfolgreich umgesetzt werden. Es ist möglich die komplette Laufkatze an eine klar gewünschte Position zu Regeln. Möglich macht das der Regler der in Matlab implementiert wurde. Zudem konnten alle Sensoren und Aktoren erfolgreich in Betrieb genommen werden. Interessant zu sehen war hier, das die QEI keine Striche über die komplette Strecke verliert. Die Sicherheitsmechanismen wurden zudem auch erfolgreich Implementiert und getestet, sodass niemand zu schaden kommen kann. Zum besseren Verständnis wurde der C-Code auch nochmal sorgfältig mit Kommentaren versehen um später Änderungen schnell möglich zu machen.  
+In dem Projekt konnten alle gestellten Anforderungen erfolgreich umgesetzt werden. Es ist möglich die komplette Laufkatze an eine klar gewünschte Position zu Regeln. Möglich macht das der Regler der in Matlab implementiert wurde. Zudem konnten alle Sensoren und Aktoren erfolgreich in Betrieb genommen werden. Interessant zu sehen war hier, das die QEI keine Striche über die komplette Strecke verliert. Die Sicherheitsmechanismen wurden zudem auch erfolgreich Implementiert und getestet, sodass niemand zu schaden kommen kann. Zum besseren Verständnis wurde der C-Code auch nochmal sorgfältig mit Kommentaren versehen um später Änderungen schnell möglich zu machen. Da in Zukunft weiter mit dem Projekt gearbeitet werden wird, wurde ebensfals ein kapitel zur Wartung hinzugefügt, das dem Anwender möglichst einfach machen soll mögliche Fehlerquellen zu identifizieren.
 \section{Ausblick}
+Da die Kommunikation implementiert ist, muss in Zukunft noch die Regelung entworfen werden zum kompletten fertig stellen des Portalkrans. \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Anhang}
 
 % Abbildungs- und Tabellenverzeichnis %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -214,9 +241,7 @@ In dem Projekt konnten alle gestellten Anforderungen erfolgreich umgesetzt werde
 %\begin{minipage}{\textwidth}
 \listoffigures
 \addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
-\listoftables
-\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
-%\end{minipage}
+
 
 
 
