@@ -179,6 +179,10 @@ Die Regeleinheit Unicontrol sollte über die Umgebung Controldesk welche auch im 
 \\ \\
 Das Motorsteuergerät verwendet zur Kommunikation eine Can-Open verbindung. Dies machte es nicht möglich wie zuvor die Driverlib zu nutzen. Deshalb mussten hier 2 Funktionen integriert werden um die Can Nachrichten im gewünschten Format zu verpacken und zu entpacken. Es wurde gefordert, den Motor im Current Mode zu betreiben.
 \section{Aufbauende Arbeiten} 
+Aufbauen tut diese Bachelor-Projektarbeit auf mehreren anderen Arbeiten. Einer dieser Arbeiten ist die Regeleinheit namens Unicontrol. Diese besitzt ein Can Interface zur Kommunikation mit den vorhandenen Knoten. Hierüber ist es möglich durch Software einen Regler zu implementieren. \\
+Vorhanden war zudem, die Auswerte Elektronik, die auf der Laufkatze befestigt ist. Diese wurde als Platine realisiert und besitzt unter anderem den Linear-Winkelencoder, ein PWM interface und eine Ansteuerung eines Hubmagneten. Die Kommunikation übernahm hier Can-Automotive. \\
+Außerdem war ein Motorsteuergerät vorhanden, bei dem die Grundlagen schon ausgearbeitet wurden und zur Verfügung standen. Hierbei war darauf zu achten, das Can-Open verwendet wurde. \\
+Der komplette mechanische Aufbau wurde ebenfalls von einem Studenten übernommen.
 
 \section{Grundlagen}
 \subsection{Betriebssystem}
@@ -230,10 +234,11 @@ Die QEI ist ein Modul des Mikroprozessors, mit dem es möglich ist Positionsdaten
 \includegraphics{Bilder/QuatraturSignalLatexBild.PNG}
 \subsection{Hall Sensor}
 \subsection{Hubmagnet}
-Ein Hubmagnet ist ein elektromagnetischer Aktor oder kurz Elektromagnet, der bei Bestromung ein Magnetfeld aufbaut. Mit diesem ist es also möglich 
-\subsection{Servo Motor}
-\subsection{QEI-Module}
+Ein Hubmagnet ist ein elektromagnetischer Aktor oder kurz Elektromagnet, der bei Bestromung ein Magnetfeld aufbaut. Durch dieses ist es möglich Gegenstände an eine Gewünschte Position zu transportieren. Die zusätzliche Masse am Pendel sorgt zudem für eine gewisse Trägheit, was natürlich die Regelung beeinflusst und den Lerneffekt der Studierenden erhöht.
+\subsection{Servomotor}
+Als Servomotor bezeichnet man eine spezielle Art der Elektromotoren, mit der es unter anderem möglich ist eine bestimmte Winkelposition zu erreichen. Innerhalb dieses Projektes, wurde der Servomotor über eine Pulsweitenmodulation(PWM) angesteuert.
 \subsection{Message Objekte}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Algorithmus}
 \section{Funktionsweise Haupt Code}
