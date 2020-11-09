@@ -97,6 +97,14 @@
 \usepackage{tikz} 
 \usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,fit,positioning,shapes.symbols,chains}
 
+%Style Anpassung des Quellcodes
+\lstset{
+	basicstyle=\ttfamily,
+	columns=fullflexible,
+	frame=single,
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -178,6 +186,7 @@ Diese Peripherie Module der zusatz Platine sollten zudem initialisiert und getes
 Die Regeleinheit Unicontrol sollte über die Umgebung Controldesk welche auch im Automotive Bereich genutzt wird, steuerbar sein. Weiter unten ist diese Umgebung nochmal gezeigt und erklärt. Zudem wird der Regler in Software implementiert. Dies ist möglich indem in Simulink der Regler aufgebaut wird und in C-Code kompiliert wird und dem Unicontrol Code hinzugefügt wird.
 \\ \\
 Das Motorsteuergerät verwendet zur Kommunikation eine Can-Open verbindung. Dies machte es nicht möglich wie zuvor die Driverlib zu nutzen. Deshalb mussten hier 2 Funktionen integriert werden um die Can Nachrichten im gewünschten Format zu verpacken und zu entpacken. Es wurde gefordert, den Motor im Current Mode zu betreiben.
+\includegraphics[scale=0.45]{Bilder/Blockdiagramm.JPG}
 \section{Aufbauende Arbeiten} 
 Aufbauen tut diese Bachelor-Projektarbeit auf mehreren anderen Arbeiten. Einer dieser Arbeiten ist die Regeleinheit namens Unicontrol. Diese besitzt ein Can Interface zur Kommunikation mit den vorhandenen Knoten. Hierüber ist es möglich durch Software einen Regler zu implementieren. \\
 Vorhanden war zudem, die Auswerte Elektronik, die auf der Laufkatze befestigt ist. Diese wurde als Platine realisiert und besitzt unter anderem den Linear-Winkelencoder, ein PWM interface und eine Ansteuerung eines Hubmagneten. Die Kommunikation übernahm hier Can-Automotive. \\
@@ -230,9 +239,14 @@ Die Werte wurden hier schon begrenzt, sodass der User keine unzulässigen Werte e
 \chapter{Initialisierung der Peripherie Module}
 \subsection{QEI-Module}
 Die QEI ist ein Modul des Mikroprozessors, mit dem es möglich ist Positionsdaten und Geschwindigkeitsdaten zu erfassen. Die QEI benötigt dazu ein Quatratursignal, welches von einem Linear Encoder zur Verfügung gestellt wird. Die QEI zählt hierbei 4 Flanken pro Signalperiode des Kodierstreifens.  \\ \\ 
-
-\includegraphics{Bilder/QuatraturSignalLatexBild.PNG}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics{Bilder/QuatraturSignalLatexBild.PNG}
+		\caption{Quatratur Signal}
+	\end{center}
+\end{figure}
 \subsection{Hall Sensor}
+Ein Hall Sensor ist ein Modul zur Messung von Magnetfeldern. Dazu benutzt das Hall Modul den Hall-Effekt. Nutzen kann man diese unter anderem zum Erfassen der Drehzahl von Motoren, sofern der Rotor mit einem Permanentmagneten ausgestattet ist. Treibt dieser Motor eine Pumpe an, kann man damit die tatsächliche Fördermenge bestimmen. Zudem ist es möglich diese als Endschalter wie im Fall der Laufkatze zu nutzen.
 \subsection{Hubmagnet}
 Ein Hubmagnet ist ein elektromagnetischer Aktor oder kurz Elektromagnet, der bei Bestromung ein Magnetfeld aufbaut. Durch dieses ist es möglich Gegenstände an eine Gewünschte Position zu transportieren. Die zusätzliche Masse am Pendel sorgt zudem für eine gewisse Trägheit, was natürlich die Regelung beeinflusst und den Lerneffekt der Studierenden erhöht.
 \subsection{Servomotor}
@@ -242,10 +256,32 @@ Als Servomotor bezeichnet man eine spezielle Art der Elektromotoren, mit der es 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Algorithmus}
 \section{Funktionsweise Haupt Code}
+\begin{lstlisting}
+sMsgObjectDataTx0.ui32MsgID  = 0x0011;
+sMsgObjectDataTx0.ui32Flags  = MSG_OBJ_TX_INT_ENABLE;
+sMsgObjectDataTx0.ui32MsgIDMask = 0x0000;
+sMsgObjectDataTx0.ui32MsgLen     = 8;
+sMsgObjectDataTx0.pui8MsgData    = pui8TxBufferMagServo;
+CANMessageSet(CAN0_BASE, 1, &sMsgObjectDataTx0, MSG_OBJ_TYPE_TX);
+\end{lstlisting}
 \section{Funktionsweise Sicherheitsmaßnahmen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Bedienungsanleitung}
-\section{Software}
+\section{ControlDesk GUI}
+Unter der Position ist einstellbar, wie viele ticks die Laufkatze fahren soll. Die Zahl, die hier angegeben werden kann ich begrenzt um Schäden vorzubeugen. Diese Begrenzung lässt sich über Asap Editor einstellen oder begrenzen, was erstmal nicht den Studenten zugänglich ist. Pro Periode des Kodierstreifens, werden bei der Position 4 ticks gezählt, was üblich bei dieser Art von Encodern ist. \\
+Über x\_PID\_D/I/P ist der jeweilige Reglerparameter anzupassen. Der entsprechende Regler ist unter Simulink vorzufinden. \\
+Die Werte x\_PID\_HLIM/LLIM sind zur Strombegrenzung geeignet. Dabei gibt x\_PID\_HLIM den höchst möglichen Strom Wert an und x\_PID\_LLIM den niedrigsten. Dieser zweite Wert sollte mit einem minus behaftet sein um der Laufkatze überhaupt zu gewähren in alle Richtungen zu fahren. Grundlage dazu ist das, das Steuergerät erst weiß in welche Richtung es die Welle des Motors drehen kann, durch dieses Vorzeichen. \\
+Unter dem Reiter initcompleteStart ist es möglich die initialisierung der kompletten Laufkatze einzuleiten. Dies sollte der erste Schritt sein um die Laufkatze in Betrieb zu nehmen, da erst alle Funktionen mit einer erfolgreichen initialisierung frei geschaltet werden. \\
+Ist dies geschehen, kann man nun die gewünschten Parameter, die Strombegrenzung und die Position einstellen. Bestätigt wird das mit dem Button namens But. \\
+Über dieses betriebsbereiten zustand ist es nun auch möglich, den eingebauten Servo Motor zu steuern. Dieser ist über den Button, Value\_Servo einstellbar. Ein betätigen des Buttons führt hier zur maximalen Auslenkung des Pendels. \\
+Nun kann man noch nach belieben egal ob die Seilwinde ausgefahren ist oder nicht, der Hub-Magneten bestromt werden um Gegnstände anzugeben.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics{Bilder/Controldesk.PNG}
+		\caption{ControlDesk GUI}
+	\end{center}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Wartung}
 \section{Epos}
@@ -264,10 +300,20 @@ Da es des öfteren Probleme bei dem Knoten gab der alle Transceiver im Netzwerk v
 Zudem wär es sinnvoll in der Gui eine farbige LED zu implementieren, die dem Benutzer zeigt, ob die komplette Verbindung zur Laufkatze noch besteht oder ob diese beispielsweise erst mal noch initialisiert werden muss. 
 Des weiteren sind noch die optimalen Parameter zu bestimmen um die Regelung perfekt zu machen. \\
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Anhang}
-
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{Bilder/Aufbau1.jpeg}
+		\caption{Konstruktion Portalkran oben}
+	\end{center}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.4]{Bilder/Aufbau2.jpeg}
+		\caption{Konstruktion Portalkran seite}
+	\end{center}
+\end{figure}
 % Abbildungs- und Tabellenverzeichnis %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \noindent

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2020.7.22)  5 NOV 2020 13:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2020.7.22)  9 NOV 2020 15:18
 entering extended mode
 **./Master_Thesis.tex
 (Master_Thesis.tex
@@ -1330,20 +1330,20 @@ File: tikzlibrarychains.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 ) (Master_Thesis.aux)
 \openout1 = `Master_Thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
 
 ("C:\Users\grewenig\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\sup
 p-pdf.mkii"
@@ -1376,7 +1376,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box66
-Package hyperref Info: Link coloring OFF on input line 102.
+Package hyperref Info: Link coloring OFF on input line 110.
 
 ("C:\Users\grewenig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\namere
 f.sty"
@@ -1388,9 +1388,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count185
 )
-LaTeX Info: Redefining \ref on input line 102.
-LaTeX Info: Redefining \pageref on input line 102.
-LaTeX Info: Redefining \nameref on input line 102.
+LaTeX Info: Redefining \ref on input line 110.
+LaTeX Info: Redefining \pageref on input line 110.
+LaTeX Info: Redefining \nameref on input line 110.
  (Master_Thesis.out) (Master_Thesis.out)
 \@outlinefile=\write7
 \openout7 = `Master_Thesis.out'.
@@ -1402,7 +1402,7 @@ Class scrreprt Info: loading recommended package `bookmark'.
 (scrreprt)           `bookmarkpackage=false' before \begin{document} and
 (scrreprt)           you can avoid this message adding:
 (scrreprt)             \usepackage{bookmark}
-(scrreprt)           before \begin{document} on input line 102.
+(scrreprt)           before \begin{document} on input line 110.
 
 ("C:\Users\grewenig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\bookma
 rk.sty"
@@ -1426,7 +1426,7 @@ Package caption Info: End \AtBeginDocument code.
 <HS_Logo2.png, id=6, 676.5275pt x 140.525pt>
 File: HS_Logo2.png Graphic file (type png)
 <use HS_Logo2.png>
-Package pdftex.def Info: HS_Logo2.png  used on input line 105.
+Package pdftex.def Info: HS_Logo2.png  used on input line 113.
 (pdftex.def)             Requested size: 250.95587pt x 52.12637pt.
 [1
 
@@ -1434,63 +1434,63 @@ Package pdftex.def Info: HS_Logo2.png  used on input line 105.
 
 {C:/Users/grewenig/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./HS_Log
 o2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 140--142
+Underfull \hbox (badness 10000) in paragraph at lines 148--150
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--142
+Underfull \hbox (badness 10000) in paragraph at lines 148--150
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--142
+Underfull \hbox (badness 10000) in paragraph at lines 148--150
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 148--153
+Underfull \hbox (badness 10000) in paragraph at lines 156--161
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 148--153
+Underfull \hbox (badness 10000) in paragraph at lines 156--161
 
  []
 
 
-Overfull \hbox (12.70924pt too wide) in paragraph at lines 148--153
+Overfull \hbox (12.70924pt too wide) in paragraph at lines 156--161
 \T1/cmr/m/n/10.95 lich ge-macht wer-den. Dies hat den Vor-teil, das Stu-die-ren
 -de in Zu-kunft das Regelungstechnik-
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 155--158
+Underfull \hbox (badness 10000) in paragraph at lines 163--166
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--158
+Underfull \hbox (badness 10000) in paragraph at lines 163--166
 
  []
 
 [4]
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 161.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 169.
 
 
 ("C:\Users\grewenig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1cmss.fd"
@@ -1544,132 +1544,167 @@ Class scrreprt Warning: \float@addtolists detected!
 (scrreprt)              a package that still implements the
 (scrreprt)              deprecated \float@addtolist interface.
 
+<Bilder/Blockdiagramm.JPG, id=119, 917.67844pt x 347.79938pt>
+File: Bilder/Blockdiagramm.JPG Graphic file (type jpg)
+<use Bilder/Blockdiagramm.JPG>
+Package pdftex.def Info: Bilder/Blockdiagramm.JPG  used on input line 189.
+(pdftex.def)             Requested size: 412.95148pt x 156.50827pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--181
+Underfull \hbox (badness 10000) in paragraph at lines 182--190
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--181
+Underfull \hbox (badness 10000) in paragraph at lines 182--190
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--181
+Underfull \hbox (badness 10000) in paragraph at lines 182--190
 
  []
 
 [7
 
-] [8]
-<Bilder/CAN-Bus-Telegramm.jpg, id=132, 1885.0425pt x 612.2875pt>
+] [8 <./Bilder/Blockdiagramm.JPG>] [9]
+<Bilder/CAN-Bus-Telegramm.jpg, id=135, 1885.0425pt x 612.2875pt>
 File: Bilder/CAN-Bus-Telegramm.jpg Graphic file (type jpg)
 <use Bilder/CAN-Bus-Telegramm.jpg>
-Package pdftex.def Info: Bilder/CAN-Bus-Telegramm.jpg  used on input line 213.
+Package pdftex.def Info: Bilder/CAN-Bus-Telegramm.jpg  used on input line 222.
 (pdftex.def)             Requested size: 1885.03792pt x 612.28601pt.
- [9]
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 218--220
+Underfull \hbox (badness 10000) in paragraph at lines 227--229
 
  []
 
 [11] [12 <./Bilder/CAN-Bus-Telegramm.jpg>]
 chapter 2.
-
-Underfull \hbox (badness 10000) in paragraph at lines 232--233
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 232--233
-
- []
-
-<Bilder/QuatraturSignalLatexBild.PNG, id=150, 414.79968pt x 105.39375pt>
+<Bilder/QuatraturSignalLatexBild.PNG, id=149, 414.79968pt x 105.39375pt>
 File: Bilder/QuatraturSignalLatexBild.PNG Graphic file (type png)
 <use Bilder/QuatraturSignalLatexBild.PNG>
 Package pdftex.def Info: Bilder/QuatraturSignalLatexBild.PNG  used on input lin
-e 234.
+e 244.
 (pdftex.def)             Requested size: 414.79868pt x 105.39348pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--248
+
+ []
+
 [13
 
- <./Bilder/QuatraturSignalLatexBild.PNG>]
+ <./Bilder/QuatraturSignalLatexBild.PNG>] [14]
 chapter 3.
-[14
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 259.
+
+("C:\Users\grewenig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1cmtt.fd"
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+) [15
 
 ]
 chapter 4.
-[15
 
-]
-chapter 5.
+Overfull \hbox (29.37479pt too wide) in paragraph at lines 271--278
+\T1/cmr/m/n/10.95 Die Wer-te x_PID_HLIM/LLIM sind zur Strom-begren-zung ge-eig-
+net. Da-bei gibt x_PID_HLIM
+ []
+
+<Bilder/Controldesk.PNG, id=175, 369.63094pt x 240.9pt>
+File: Bilder/Controldesk.PNG Graphic file (type png)
+<use Bilder/Controldesk.PNG>
+Package pdftex.def Info: Bilder/Controldesk.PNG  used on input line 281.
+(pdftex.def)             Requested size: 369.63002pt x 240.8994pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [16
+
+] [17 <./Bilder/Controldesk.PNG>]
+chapter 5.
+[18
 
 ]
 chapter 6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 262--265
+Underfull \hbox (badness 10000) in paragraph at lines 299--302
 
  []
 
-[17
+[19
 
 ]
 chapter 7.
-[18
+<Bilder/Aufbau1.jpeg, id=195, 728.4816pt x 971.3088pt>
+File: Bilder/Aufbau1.jpeg Graphic file (type jpg)
+<use Bilder/Aufbau1.jpeg>
+Package pdftex.def Info: Bilder/Aufbau1.jpeg  used on input line 307.
+(pdftex.def)             Requested size: 364.23991pt x 485.65321pt.
 
-] (Master_Thesis.lof)
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<Bilder/Aufbau2.jpeg, id=196, 971.3088pt x 728.4816pt>
+File: Bilder/Aufbau2.jpeg Graphic file (type jpg)
+<use Bilder/Aufbau2.jpeg>
+Package pdftex.def Info: Bilder/Aufbau2.jpeg  used on input line 313.
+(pdftex.def)             Requested size: 388.51665pt x 291.38748pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[20
+
+] [21 <./Bilder/Aufbau1.jpeg>] [22 <./Bilder/Aufbau2.jpeg>]
+(Master_Thesis.lof)
 \tf@lof=\write9
 \openout9 = `Master_Thesis.lof'.
 
- [19
+ [23
 
 ] (Master_Thesis.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
-) [20
+) [24
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 298.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 298.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 345.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 345.
  (Master_Thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 298.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 298.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 345.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 345.
 Package rerunfilecheck Info: File `Master_Thesis.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 298.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 345.
  ) 
 Here is how much of TeX's memory you used:
- 38906 strings out of 492895
- 872314 string characters out of 3122334
- 1350048 words of memory out of 3000000
- 42057 multiletter control sequences out of 15000+200000
- 22539 words of font info for 65 fonts, out of 3000000 for 9000
+ 39799 strings out of 492895
+ 882194 string characters out of 3122334
+ 1366048 words of memory out of 3000000
+ 42925 multiletter control sequences out of 15000+200000
+ 23619 words of font info for 67 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,11n,103p,10134b,621s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{subsection.2.0.6} has been referenced but does no
-t exist, replaced by a fixed one
-
+ 73i,11n,103p,10134b,1635s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi6
+00\ectt1095.pk> <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jkn
+appen/ec/dpi600\ecrm0600.pk> <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/
+pk/ljfour/jknappen/ec/dpi600\ecsx1200.pk> <C:\Users\grewenig\AppData\Local\MiKT
+eX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx1440.pk> <C:\Users\grewenig\AppDa
+ta\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsl1095.pk> <C:\Users\g
+rewenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx1095.pk
+> <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi60
+0\ecsx2074.pk> <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jkna
+ppen/ec/dpi600\ecrm1200.pk> <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/p
+k/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\grewenig\AppData\Local\MiKTe
+X\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1200.pk> <C:\Users\grewenig\AppDat
+a\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\gr
+ewenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1440.pk>
  <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600
-\ecsx1200.pk> <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknap
-pen/ec/dpi600\ecsx1440.pk> <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/pk
-/ljfour/jknappen/ec/dpi600\ecsl1095.pk> <C:\Users\grewenig\AppData\Local\MiKTeX
-\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx1095.pk> <C:\Users\grewenig\AppData
-\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx2074.pk> <C:\Users\gre
-wenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> 
-<C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
-ecrm1095.pk> <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknapp
-en/ec/dpi600\eccc1200.pk> <C:\Users\grewenig\AppData\Local\MiKTeX\2.9\fonts/pk/
-ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\grewenig\AppData\Local\MiKTeX\
-2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1440.pk> <C:\Users\grewenig\AppData\
-Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1728.pk>
-Output written on Master_Thesis.pdf (20 pages, 302964 bytes).
+\eccc1728.pk>
+Output written on Master_Thesis.pdf (24 pages, 4523793 bytes).
 PDF statistics:
- 750 PDF objects out of 1000 (max. 8388607)
- 63 named destinations out of 1000 (max. 500000)
- 340 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 865 PDF objects out of 1000 (max. 8388607)
+ 77 named destinations out of 1000 (max. 500000)
+ 360 words of extra memory for PDF output out of 10000 (max. 10000000)
 
