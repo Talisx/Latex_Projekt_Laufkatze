@@ -107,36 +107,38 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
+	
 \begin{titlepage}
-{\centering
-\includegraphics[width=0.6\textwidth]{HS_Logo2}\par
-\vspace{1cm}
-{\scshape\LARGE University of Applied Sciences Trier \par}
-\vspace{1.5cm}
-{\scshape\Large Bachelor Projektarbeit \par}
-\vspace{1.5cm}
-{\huge\bfseries Entwicklung und Implementierung eines Can-Interfaces zur präzisen
-	Lageregelung eines Portalkrans \par}
-\vspace{1.5cm}
-{\scshape \large BACHELOR OF ENGINEERING \par}
-\vspace{0.8cm}
-{\scshape\large  Elektrotechnik\par}
-{\scshape\large Informationstechnologie und Elektronik  \par}
-\vspace{1.0cm}
-{verfasst von: \\  \par}
-%\vspace{0.2cm}
-{\large  Torsten  \textsc{Zimmermann}. [966352]\\  \par}
- \vspace{0.5cm}
- {Teamprojekt mit: \\  \par}
- {\large  Steave  \textsc{Dahm}. [969471]\\  \par}
- \vspace{0.5cm}
-betreut von: \par
-{\large Prof. Dr. Ing. Matthias \textsc{Scherer} \\  Andreas \textsc{Reis}, M. Sc. \par}
-\vspace{0.5cm}
-{Abgabedatum: \\  \par}
-%\vspace{0.2cm}
-{\large \today \par}} %\today
+	{\centering
+		\includegraphics[width=0.6\textwidth]{HS_Logo2}\par
+		\vspace{1cm}
+		{\scshape\LARGE University of Applied Sciences Trier \par}
+		\vspace{1.5cm}
+		{\scshape\Large Bachelor Projektarbeit \par}
+		\vspace{1.5cm}
+		{\huge\bfseries Entwicklung und Implementierung eines Can-Interfaces zur präzisen
+			Lageregelung eines Portalkrans \par}
+		\vspace{1.5cm}
+		{\scshape \large BACHELOR OF ENGINEERING \par}
+		\vspace{0.8cm}
+		{\scshape\large  Elektrotechnik\par}
+		{\scshape\large Informationstechnologie und Elektronik  \par}
+		\vspace{1.0cm}
+		{verfasst von: \\  \par}
+		%\vspace{0.2cm}
+		{\large  Torsten  \textsc{Zimmermann}. [966352]\\  \par}
+		\vspace{0.5cm}
+		{Teamprojekt mit: \\  \par}
+		{\large  Steave  \textsc{Dahm}. [969471]\\  \par}
+		\vspace{0.5cm}
+		betreut von: \par
+		{\large Prof. Dr. Ing. Matthias \textsc{Scherer} \\  Andreas \textsc{Reis}, M. Sc. \par}
+		\vspace{0.5cm}
+		{Abgabedatum: \\  \par}
+		%\vspace{0.2cm}
+		{\large \today \par}} %\today
 \end{titlepage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -218,9 +220,9 @@ Bei Can handelt es sich um ein serielles Bussystem, das von Bosch entwickelt wur
 Can arbeitet nach einem Multi Master Prinzip. Da bei diesem Prinzip, das gleichzeitige Senden von mehreren Stationen zu Kollisionen führen würde, benutzt der CAN-Bus ein prioritätengesteuertes Zugangsverfahren, das Arbitration. Es setzt sich immer die Nachricht durch, die mit der höchsten Priorität vergeben ist. Prioritäten müssen also mit bedacht von dem jeweiligen Entwickler vergeben werden, um schnell genug auf wichtige Ereignisse reagieren zu können. Die beiden zustände werden mit rezessiv(logisch 1) und dominant(logisch 0) bezeichnet. Der dominante Zustand setzt dich dabei immer gegen den rezessiven Zustand durch. \\
 Zur eigentlichen Kommunikation, ist es ausreichend nur die CAN-HIGH und CAN-LOW Ader zu verwenden. Bei den beiden Signalen, handelt es sich um differenzielle Signale, die mit entgegen gesetzter Polarität übertragen werden. Dadurch wird eine hohe elektrische Störsicherheit erreicht, was ebenfalls den Can auszeichnet. Mit der hier verwendeten Can Verbindung ist eine Datenübertragung von 1Mbit/s möglich. Angegeben ist diese Übertragungsrate für eine Kabellänge von 40 Metern. Um eine optimale Kommunikation zu ermöglichen, muss noch eine Busterminierung vorgenommen werden. Terminiert wird hier an den enden des Netzwerkes jeweils mit 120 Ohm Widerständen. Ohne Terminierung würde es im Netzwerk zu Reflexionen kommen.
 \begin{figure}[h]
-\begin{center}
-\includegraphics[angle=90, scale=0.3]{Bilder/CAN-Bus-Telegramm.jpg}
-\end{center}
+	\begin{center}
+		\includegraphics[angle=90, scale=0.3]{Bilder/CAN-Bus-Telegramm.jpg}
+	\end{center}
 \end{figure}
 \newpage
 \section{Herangehensweise}
@@ -264,6 +266,12 @@ sMsgObjectDataTx0.ui32MsgLen     = 8;
 sMsgObjectDataTx0.pui8MsgData    = pui8TxBufferMagServo;
 CANMessageSet(CAN0_BASE, 1, &sMsgObjectDataTx0, MSG_OBJ_TYPE_TX);
 \end{lstlisting}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics{Bilder/Übersicht1.jpeg}
+		\caption{Anfrage der Daten}
+	\end{center}
+\end{figure}
 \section{Funktionsweise Sicherheitsmaßnahmen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Bedienungsanleitung}
@@ -341,6 +349,5 @@ Des weiteren sind noch die optimalen Parameter zu bestimmen um die Regelung perf
 %\nocite{*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\end{document}
+\end{document}	
 
